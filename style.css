@@ -1,0 +1,68 @@
+nav{
+    font-family: Hedvig Letters Serif;
+    background-image: linear-gradient(to left,#a97ce0,#516395);
+
+}
+.navbar-toggler{
+    width:50px;
+}
+header{
+    font-family: Hedvig Letters Serif;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to left,#a97ce0, #516395);
+}
+header,header h1{
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 45px;
+    align-content: center;
+}
+.login form,.signup form{
+    width:400px;
+    height: 400px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-image: linear-gradient(hsl(252, 29%, 67%),hsl(251, 58%, 67%));
+}
+h4{
+    text-align: center;
+}
+.login,.signup{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.form-group,.form-check,button{
+    font-family: Hedvig Letters Serif;
+    width: 70%;
+    margin: 2px auto;
+}
+footer{
+    color:white;
+    text-align: center;
+}
+.feedback{
+    width:auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom:10px;
+}
+.feedback button{
+    margin: auto;
+    width: auto;
+}
+
