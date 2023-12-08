@@ -18,6 +18,24 @@
         href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&family=Hedvig+Letters+Serif:opsz@12..24&family=Outfit:wght@400;700&family=Roboto:wght@400;700&display=swap"
         rel="stylesheet">
     <title>AB Hospitals</title>
+    <style>
+        .password-strength {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .weak {
+            color: red;
+        }
+
+        .fair {
+            color: yellow;
+        }
+
+        .strong {
+            color: green;
+        }
+    </style>
 </head>
 
 <body>
@@ -52,66 +70,117 @@
                 width="100" height="100" class="d-inline-block align-center" alt=""> HOSPITALS</h1>
     </header>
     <div class="signup">
-        <form>
+        <form id="signupForm">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter Your Name">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                <label for="userEmail">Email address</label>
+                <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp"
                     placeholder="Enter email">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                     else.</small>
             </div>
             <div class="form-group">
-                <label for="inputPassword4">Password</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" validatePassword()>
+                <span id="passwordError" class="password-strength"></span>
             </div>
             <div class="form-group">
-                <label for="inputPassword4">Confirm Password</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                <label for="ConfirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" id="ConfirmPassword" placeholder="Password">
             </div>
             <button type="submit" class="btn btn-primary">Sign up</button>
         </form>
     </div>
     <!-- Button trigger modal -->
-<div class="feedback">
-    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
-     Leave a Feedback
-    </button>
+    <div class="feedback">
+        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
+            Leave a Feedback
+        </button>
     </div>
-    
+
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Feedback</h5>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                <input type="text" class="form-control" id="recipient-name">
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label">Message:</label>
-                <textarea class="form-control" id="message-text"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
-          </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Feedback</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     <footer class="bg-dark">
         <p>copyright@2023</p>
 
     </footer>
+
+    <script>
+        
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+                const userName = document.getElementById('name');
+                const userEmail = document.getElementById('userEmail');
+               
+                if (userName.value === '') {
+                    alert("Name Should not be Empty");
+                }
+                if (userEmail.value === '') {
+                    alert("Email Should not be Empty");
+                }
+                // Validate Password
+                const userPassword = document.getElementById('password');
+            const password = userPassword.value;
+             const confirmPassword = document.getElementById('ConfirmPassword');
+            if (password !== confirmPassword.value) {
+                alert('Confirm Password should match the Password field');
+                event.preventDefault();
+                return;
+            }
+
+            });
+            document.getElementById('password').addEventListener('input', function() {
+            const userPassword = document.getElementById('password');
+            const passwordError = document.getElementById('passwordError');
+            const password = userPassword.value;
+
+            passwordError.textContent = '';
+
+            const isStrong = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+            const isFair = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+
+            if (isStrong) {
+                passwordError.textContent = 'Strong Password';
+                passwordError.className = 'password-strength strong';
+            } else if (isFair) {
+                passwordError.textContent = 'Fair Password';
+                passwordError.className = 'password-strength fair';
+            } else {
+                passwordError.textContent = 'Weak Password Password should be at least 8 characters long, with 1 uppercase, 1 lowercase, and 1 special character';
+                passwordError.className = 'password-strength weak';
+                
+            }
+        });
+
+
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

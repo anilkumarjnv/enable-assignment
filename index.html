@@ -44,16 +44,16 @@
 </header>
 
 <div class="login">
-<form>
+<form id="loginform" onsubmit="validateForm()">
   <h4 class="heading">Login</h4>
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <label for="useremail">Email address</label>
+    <input type="email" class="form-control" id="useremail" aria-describedby="emailHelp" placeholder="Enter email">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <label for="userPassword">Password</label>
+    <input type="password" class="form-control" id="userPassword" placeholder="Password">
   </div>
   <div class="form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -91,7 +91,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal">Submit</button>
       </div>
     </div>
   </div>
@@ -100,6 +100,22 @@
   <p>copyright@2023</p>
 
 </footer>
+
+<script>
+  function validateForm(){
+    const userEmail=document.getElementById('useremail');
+    const userPassword= document.getElementById('userPassword');
+    if(userEmail.value===''){
+      alert("Email should not be empty")
+    }
+    if(userPassword.value===''){
+      alert("Password should not be empty")
+    }
+    else {
+      alert("Login Successful")
+    }
+  }
+</script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
